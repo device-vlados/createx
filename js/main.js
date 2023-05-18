@@ -1,46 +1,95 @@
 $(function () {
 
-    var mixer = mixitup('.blog__list');
+    var mixer = mixitup('.directions__list');
 
-    $('.blog__filter-btn').on('click', function() {
-        $('.blog__filter-btn').removeClass('blog__filter-btn--active')
-        $(this).addClass('blog__filter-btn--active')
+    $('.directions__filter-btn').on('click', function() {
+        $('.directions__filter-btn').removeClass('directions__filter-btn--active')
+        $(this).addClass('directions__filter-btn--active')
+    })
+    
+    $('.team__slider').slick({
+        arrows: false,
+        slidesToShow: 4,
+        infinite: true,
+        draggable: false,
+        waitForAnimate: false,
+        responsive:
+    [
+        {
+        breakpoint: 1100,
+        settings: {
+            slidesToShow: 3,
+        },
+        },
+        {
+        breakpoint: 750,
+        settings: {
+            slidesToShow: 2,
+        },
+        },
+        {
+        breakpoint: 550,
+        settings: {
+            slidesToShow: 1,
+            draggable: true,
+            },
+        },
+        ]
+    })
+    $('.team__slider-prev').on('click', function (e) {
+        e.preventDefault()
+        $('.team__slider').slick('slickPrev')
+    })
+    $('.team__slider-next').on('click', function (e) {
+        e.preventDefault()
+        $('.team__slider').slick('slickNext')
     })
 
-    $('.things__slider').slick({
+    $('.testimonials__slider').slick({
         arrows: false,
         dots: true,
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        appendDots: $('.things__dots'),
+        appendDots: $('.testimonials__dots'),
         waitForAnimate: false,
     })
-    $('.things__prev').on('click', function (e) {
+    $('.testimonials__prev').on('click', function (e) {
         e.preventDefault()
-        $('.things__slider').slick('slickPrev')
+        $('.testimonials__slider').slick('slickPrev')
     })
-    $('.things__next').on('click', function (e) {
+    $('.testimonials__next').on('click', function (e) {
         e.preventDefault()
-        $('.things__slider').slick('slickNext')
+        $('.testimonials__slider').slick('slickNext')
     })
 
-    $('.faq__acc-link').on('click', function (e) {
+    $('.program__acc-link').on('click', function (e) {
         e.preventDefault()
-        if ($(this).hasClass('faq__acc-link--active')) {
-            $(this).removeClass('faq__acc-link--active')
-            $(this).children('.faq__acc-text').slideUp()
+        if ($(this).hasClass('program__acc-link--active')) {
+            $(this).removeClass('program__acc-link--active')
+            $(this).children('.program__acc-text').slideUp()
         } else {
-            $('.faq__acc-link').removeClass('faq__acc-link--active')
-            $('.faq__acc-text').slideUp()
-            $(this).addClass('faq__acc-link--active')
-            $(this).children('.faq__acc-text').slideDown()
+            $('.program__acc-link').removeClass('program__acc-link--active')
+            $('.program__acc-text').slideUp()
+            $(this).addClass('program__acc-link--active')
+            $(this).children('.program__acc-text').slideDown()
         }
     })
 
-    $(".header__nav-list a, .footer__logo, .footer__nav-list a").on("click", function (e) {
+    $(".header__nav-list a, .header__top-btn, header__content-btn, .footer__go-top, .footer__item-link").on("click", function (e) {
         e.preventDefault()
         var id = $(this).attr('href'),
             top = $(id).offset().top
         $('body,html').animate({ scrollTop: top }, 800)
+    })
+
+    setInterval(() => {
+        if ($(window).scrollTop() > 0 && $('.header__top').hasClass('header__top--open') === false) {
+            $('.burger').addClass('burger--follow')
+        } else {
+            $('.burger').removeClass('burger--follow')
+        }
+    }, 0)
+    $('.burger, .overlay').on('click', function (e) {
+        e.preventDefault()
+        $('.header__top').toggleClass('header__top--open')
+        $('.overlay').toggleClass('overlay--show')
     })
 })
