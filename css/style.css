@@ -1828,6 +1828,9 @@ margin-right: 12px;
     .questions__img {
         display: none;
     }
+    .questions__content {
+        margin-left: 0px;
+    }
     /* -------------------------------------- */
     .footer__top-inner {
         display: flex;
@@ -1951,6 +1954,9 @@ margin-right: 12px;
     border-radius: 10px;
     }
     /* -------------------------------------------- */
+    .questions__content {
+        margin-left: 0px;
+    }
     .questions__form-row {
         display: flex;
         flex-direction: column;
